@@ -24,7 +24,7 @@ class Entrada:
 
     @classmethod
     def get_by_user_id(cls, data):
-        # BONUS: Orden de más reciente a más antigua
+        
         query = """
             SELECT * FROM entradas 
             WHERE usuario_id = %(usuario_id)s 

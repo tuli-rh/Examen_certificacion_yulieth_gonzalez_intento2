@@ -1,47 +1,34 @@
-from flask import render_template, redirect, request, session, flash
-from flask_app import app
+from flask import Blueprint, render_template, redirect, request, session, flash
 from flask_app.models.usuario import Usuario
-from flask_bcrypt import Bcrypt
 
-bcrypt = Bcrypt(app)
+# Instancia del Blueprint para usuarios
+usuarios_bp = Blueprint('usuarios', __name__)
 
-@app.route('/')
+@usuarios_bp.route('/')
 def index():
     if 'usuario_id' in session:
         return redirect('/dashboard')
     return render_template('index.html')
 
-@app.route('/registrar', methods=['POST'])
-def registrar():
+@usuarios_bp.route('/registro', methods=['POST'])
+def registro():
     if not Usuario.validar_registro(request.form):
         return redirect('/')
     
-    password_hash = bcrypt.generate_password_hash(request.form['password'])
-    
-    data = {
-        'nombre': request.form['nombre'],
-        'apellido': request.form['apellido'],
-        'email': request.form['email'],
-        'edad': request.form['edad'],
-        'password': password_hash
-    }
-    
-    usuario_id = Usuario.save(data)
+    usuario_id = Usuario.guardar(request.form)
     session['usuario_id'] = usuario_id
     return redirect('/dashboard')
 
-@app.route('/login', methods=['POST'])
+@usuarios_bp.route('/login', methods=['POST'])
 def login():
-    usuario = Usuario.get_by_email({'email': request.form['email']})
-    
-    if not usuario or not bcrypt.check_password_hash(usuario.password, request.form['password']):
-        flash("Credenciales inválidas", "login")
+    usuario = Usuario.validar_login(request.form)
+    if not usuario:
         return redirect('/')
-        
+    
     session['usuario_id'] = usuario.id
     return redirect('/dashboard')
 
-@app.route('/logout')
+@usuarios_bp.route('/logout')
 def logout():
     session.clear()
     return redirect('/')
