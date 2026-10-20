@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<header class="top-header">
+    <nav class="right-nav">
+        <a href="/dashboard">Inicio</a> | 
+        <a href="/logout">Cerrar Sesión</a>
+    </nav>
+</header>
+
+<div class="show-entry-box">
+    <h2>Entrada de {{ entrada.fecha_entrada.strftime('%Y-%m-%d') }}</h2>
+    <div class="entry-content">
+        <p>{{ entrada.notas }}</p>
+    </div>
+</div>
+{% endblock %}

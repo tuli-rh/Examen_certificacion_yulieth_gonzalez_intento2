@@ -1,0 +1,182 @@
+* {
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #f4f4f4;
+    padding: 20px;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    border: 2px solid #000;
+    padding: 25px;
+}
+
+.main-title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 28px;
+}
+
+.auth-grid {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.auth-box {
+    flex: 1;
+}
+
+.auth-box h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.form-group label {
+    width: 140px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.form-group input, .form-group textarea {
+    flex: 1;
+    padding: 5px;
+    border: 1px solid #000;
+}
+
+.form-group.inline {
+    align-items: flex-start;
+}
+
+.form-group.inline label {
+    width: 120px;
+}
+
+.btn {
+    padding: 4px 12px;
+    border: 1px solid #000;
+    background-color: #efefef;
+    cursor: pointer;
+    margin-top: 10px;
+    float: right;
+}
+
+.top-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.top-header a {
+    color: #0000ff;
+    text-decoration: underline;
+}
+
+.right-nav {
+    width: 100%;
+    text-align: right;
+}
+
+.search-bar {
+    margin-bottom: 25px;
+}
+
+.search-bar input {
+    padding: 5px;
+    width: 250px;
+    border: 1px solid #000;
+    border-radius: 12px;
+}
+
+.btn-search {
+    padding: 4px 12px;
+    border: 1px solid #000;
+    background-color: #efefef;
+    cursor: pointer;
+}
+
+.entries-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.entry-card {
+    border: 1px solid #000;
+    padding: 15px;
+    background-color: #fff;
+}
+
+.entry-card h3 {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.entry-card .date {
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.card-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-card {
+    border: 1px solid #000;
+    padding: 2px 8px;
+    text-decoration: none;
+    color: #000;
+    background-color: #efefef;
+    font-size: 13px;
+}
+
+.entry-form {
+    max-width: 500px;
+}
+
+.btn-save {
+    padding: 4px 15px;
+    border: 1px solid #000;
+    background-color: #efefef;
+    cursor: pointer;
+    margin-left: 120px;
+}
+
+.show-entry-box {
+    margin-top: 30px;
+}
+
+.show-entry-box h2 {
+    font-size: 26px;
+    margin-bottom: 20px;
+}
+
+.entry-content {
+    border: 1px solid #000;
+    padding: 15px;
+    min-height: 120px;
+    max-width: 400px;
+}
+
+.errors {
+    color: red;
+    list-style-type: disc;
+    margin-left: 20px;
+    margin-bottom: 10px;
+    font-size: 13px;
+}

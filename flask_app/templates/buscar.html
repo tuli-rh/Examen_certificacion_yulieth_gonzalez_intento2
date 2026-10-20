@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<header class="top-header">
+    <nav class="right-nav">
+        <a href="/dashboard">Inicio</a> | 
+        <a href="/logout">Cerrar Sesión</a>
+    </nav>
+</header>
+
+<div class="entries-grid">
+    {% for entrada in entradas %}
+        <div class="entry-card">
+            <h3>Entrada</h3>
+            <p class="date">{{ entrada.fecha_entrada.strftime('%Y-%m-%d') }}</p>
+            <div class="card-actions">
+                <a href="/editar/{{ entrada.id }}" class="btn-card">Editar</a>
+                <a href="/borrar/{{ entrada.id }}" class="btn-card">Borrar</a>
+                <a href="/ver/{{ entrada.id }}" class="btn-card">Ver</a>
+            </div>
+        </div>
+    {% else %}
+        <p>No se encontraron entradas que coincidan con "{{ termino }}".</p>
+    {% endfor %}
+</div>
+{% endblock %}

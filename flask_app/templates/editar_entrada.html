@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+<header class="top-header">
+    <h2>Editar Entrada</h2>
+    <nav>
+        <a href="/dashboard">Inicio</a> | 
+        <a href="/logout">Cerrar Sesión</a>
+    </nav>
+</header>
+
+{% with messages = get_flashed_messages(category_filter=['entrada']) %}
+    {% if messages %}
+        <ul class="errors">
+        {% for message in messages %}
+            <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+{% endwith %}
+
+<form action="/actualizar_entrada/{{ entrada.id }}" method="post" class="entry-form">
+    <div class="form-group inline">
+        <label>Fecha Entrada:</label>
+        <input type="date" name="fecha_entrada" value="{{ entrada.fecha_entrada.strftime('%Y-%m-%d') }}">
+    </div>
+    <div class="form-group inline">
+        <label>Notas:</label>
+        <textarea name="notas" rows="6">{{ entrada.notas }}</textarea>
+    </div>
+    <button type="submit" class="btn-save">Guardar</button>
+</form>
+{% endblock %}

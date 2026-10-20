@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1 class="main-title">QueridoDiario</h1>
+<div class="auth-grid">
+    <div class="auth-box">
+        <h2>Registro</h2>
+        {% with messages = get_flashed_messages(category_filter=['registro']) %}
+            {% if messages %}
+                <ul class="errors">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+        <form action="/registrar" method="post">
+            <div class="form-group">
+                <label>Nombre</label>
+                <input type="text" name="nombre">
+            </div>
+            <div class="form-group">
+                <label>Apellido</label>
+                <input type="text" name="apellido">
+            </div>
+            <div class="form-group">
+                <label>E-mail</label>
+                <input type="email" name="email">
+            </div>
+            <div class="form-group">
+                <label>Edad</label>
+                <input type="number" name="edad">
+            </div>
+            <div class="form-group">
+                <label>Contraseña</label>
+                <input type="password" name="password">
+            </div>
+            <div class="form-group">
+                <label>Conf. Contraseña</label>
+                <input type="password" name="confirm_password">
+            </div>
+            <button type="submit" class="btn">Registrar</button>
+        </form>
+    </div>
+
+    <div class="auth-box">
+        <h2>Inicio de Sesión</h2>
+        {% with messages = get_flashed_messages(category_filter=['login']) %}
+            {% if messages %}
+                <ul class="errors">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+        <form action="/login" method="post">
+            <div class="form-group">
+                <label>E-mail</label>
+                <input type="email" name="email">
+            </div>
+            <div class="form-group">
+                <label>Contraseña</label>
+                <input type="password" name="password">
+            </div>
+            <button type="submit" class="btn">Iniciar Sesión</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
