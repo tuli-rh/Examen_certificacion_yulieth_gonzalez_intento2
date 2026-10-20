@@ -2,7 +2,6 @@ import os
 import pymysql.cursors
 from dotenv import load_dotenv
 
-
 load_dotenv()
 
 class MySQLConnection:
@@ -10,7 +9,7 @@ class MySQLConnection:
         connection = pymysql.connect(
             host=os.getenv('DB_HOST', 'localhost'),
             user=os.getenv('DB_USER', 'root'),
-            password=os.getenv('DB_PASSWORD', ''),
+            password=os.getenv('DB_PASSWORD'),
             db=db,
             charset='utf8mb4',
             cursorclass=pymysql.cursors.DictCursor,
@@ -21,7 +20,7 @@ class MySQLConnection:
     def query_db(self, query, data=None):
         with self.connection.cursor() as cursor:
             try:
-                query = cursor.mogrify(query, data)
+                # Se ejecuta directamente para evitar errores con mogrify
                 cursor.execute(query, data)
                 if query.lower().find("insert") >= 0:
                     self.connection.commit()

@@ -96,7 +96,12 @@ def borrar_entrada(id):
 
 @app.route('/buscar')
 def buscar_redir():
+    if 'usuario_id' not in session:
+        return redirect('/')
+    # Captura el término del formulario
     termino = request.args.get('termino', '')
+    if not termino:
+        return redirect('/dashboard')
     return redirect(f'/buscar/{termino}')
 
 @app.route('/buscar/<string:termino>')

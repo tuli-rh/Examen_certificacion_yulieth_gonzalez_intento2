@@ -11,7 +11,13 @@
     {% for entrada in entradas %}
         <div class="entry-card">
             <h3>Entrada</h3>
-            <p class="date">{{ entrada.fecha_entrada.strftime('%Y-%m-%d') }}</p>
+            <p class="date">
+                {% if entrada.fecha_entrada is string %}
+                    {{ entrada.fecha_entrada }}
+                {% else %}
+                    {{ entrada.fecha_entrada.strftime('%Y-%m-%d') }}
+                {% endif %}
+            </p>
             <div class="card-actions">
                 <a href="/editar/{{ entrada.id }}" class="btn-card">Editar</a>
                 <a href="/borrar/{{ entrada.id }}" class="btn-card">Borrar</a>
@@ -19,7 +25,7 @@
             </div>
         </div>
     {% else %}
-        <p>No se encontraron entradas que coincidan con "{{ termino }}".</p>
+        <p>No se encontraron entradas que incluyan "{{ termino }}".</p>
     {% endfor %}
 </div>
 {% endblock %}
